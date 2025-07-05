@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const db = require('./db');
+// DOTENV FILE(Sensit.. info..)
+require('dotenv').config();
+
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());// use req.body
@@ -24,6 +27,15 @@ const menuItemRoutes = require('./routes/menuItemRoutes');
 // use the routers 
 app.use('/menu',menuItemRoutes);
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
+
+const PORT = process.env.PORT || 4000;
+
+
+
 //app.get('/chicken', (req,res) => {
 //res.send('Good taste of chicken and i made this')
 //})
@@ -39,4 +51,6 @@ app.use('/menu',menuItemRoutes);
  // }
    // res.send(customized_idli)
 //})
-app.listen(4000);
+app.listen(PORT, () => {
+  console.log('Listening on port 4000');
+})

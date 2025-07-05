@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
+
 // mongoDB connection url
-const mongoURL = 'mongodb://localhost:27017/company';
+//const mongoURL = process.env.MONGODB_URL_LOCAL;
+const mongoURL = process.env.MONGODB_URL;
+// for online database collection
+
 
 // setup mongodb connection
 mongoose.connect(mongoURL, {
